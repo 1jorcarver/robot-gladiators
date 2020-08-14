@@ -71,34 +71,32 @@ var playerInfo = {
     health: 100,
     attack: 10,
     money: 10,
-    reset: function() {
+    reset: function () {
         this.health = 100;
         this.money = 10;
         this.attack = 10;
     },
-    refillHealth: function() {
+    refillHealth: function () {
         if (this.money >= 7) {
             window.alert("Refilling player's health by 20 fo 7 dollars.");
             this.health += 20;
             this.money -= 7;
-    }
-    else {
-        window.alert("You don't have enough money!");
-    }
-},
-    upgradeAttack: function() {
+        }
+        else {
+            window.alert("You don't have enough money!");
+        }
+    },
+    upgradeAttack: function () {
         if (this.money >= 7) {
             window.alert("Upgrading player's attack by 6 for 7 dollars.");
             this.attack += 6;
             this.money -= 7;
+        }
+        else {
+            window.alert("You don't have enough money!");
+        }
     }
-    else {
-        window.alert("You don't have enough money!");
-    }
-}
-
-console.log(playerInfo.name, playerInfo.attack, playerInfo.health);
-
+};
 var enemyInfo = [
     {
         name: "Roborto",
@@ -149,7 +147,7 @@ var startGame = function () {
     }
 };
 
-// function to end the entire game
+    // function to end the entire game
 var endGame = function () {
     // if player is still alive, player wins!
     if (playerInfo.health > 0) {
@@ -173,9 +171,7 @@ var endGame = function () {
 // function to shop
 var shop = function () {
     // ask player what they'd like to do
-    var shopOptionPrompt = window.prompt(
-        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
-    );
+    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
 
     // use switch to carry out action
     switch (shopOptionPrompt) {
@@ -200,7 +196,7 @@ var shop = function () {
     }
 };
 
-// start the game when the page loads
-startGame();
+    // start the game when the page loads
+    startGame();
 //   execute function
 // fight ();
