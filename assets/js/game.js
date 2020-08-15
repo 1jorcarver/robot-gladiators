@@ -1,5 +1,6 @@
 var fightOrSkip = function () {
     // ask user if they'd like to fight or skip using  function
+    debugger;
     var promptFight = window.prompt('Would you like FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
 
     // Conditional Recursive Function Call
@@ -20,10 +21,11 @@ var fightOrSkip = function () {
             window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
             // subtract money from playerMoney for skipping, but don't let them go into the negative
             playerInfo.playerMoney = Math.max(0, playerInfo.money - 10);
-
+            endGame();
             // return true if user wants to leave
             return true;
-        } else {
+        } 
+        else {
             return false;
         }
     }
@@ -188,18 +190,28 @@ var startGame = function () {
 
 // function to end the entire game
 var endGame = function () {
-    // if player is still alive, player wins!
-    if (playerInfo.health > 0) {
-        window.alert("Great job, you've survived the game! You now have a score of" + playerInfo.money + ".");
+    window.alert("The game has now ended. Let's see how you did!");
+
+    // check localStorage for high score, if it's not there, use 0
+    var highScore = localStorage.getItem("highscore");
+    if (highScore === null) {
+        highScore = 0;
+    }
+    // if player has more money than the high score, player has new high score!
+    if (playerInfo.money > highScore) {
+        localStorage.setItem("highscore", playerInfo.money);
+        localStorage.setItem("name", playerInfo.name);
+
+        alert(playerInfo.name + " now has the high score of " + playerInfo.money + "!");
     }
     else {
-        window.alert("You've lost your robot in battle.");
+        alert(playerInfo.name + " did not beat the high score of " + highScore + ". Maybe next time!");
     }
+
     // ask player if they'd like to play again
     var playAgainConfirm = window.confirm("Would you like to play again?");
 
     if (playAgainConfirm) {
-        // restart the game
         startGame();
     }
     else {
